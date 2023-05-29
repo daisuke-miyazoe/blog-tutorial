@@ -8,7 +8,7 @@
     <h2>投稿</h2>
   </div>
 
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% comment %} <div class="formpost">
       {% render_field form.title class="form-control" placeholder="タイトルを入力" %}

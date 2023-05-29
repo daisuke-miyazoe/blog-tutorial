@@ -31,8 +31,11 @@ class CreatePostView(View, LoginRequiredMixin):
 
         if form.is_valid():
             post_data = Post()
+            post_data.author = request.user
             post_data.title = form.cleaned_data.get('title')
             post_data.content = form.cleaned_data.get('content')
+            if request.FILES:
+                post_data.image = request.FILES.get('image')
             post_data.save()
             # return redirect('index')
             return redirect('post_detail', post_data.id)
@@ -49,6 +52,7 @@ class PostEditView(View, LoginRequiredMixin):
             initial={
                 'title': post_data.title,
                 'content': post_data.content,
+                'image': post_data.image,
             }
         )
 
@@ -64,6 +68,8 @@ class PostEditView(View, LoginRequiredMixin):
             post_data.author = request.user
             post_data.title = form.cleaned_data.get('title')
             post_data.content = form.cleaned_data.get('content')
+            if request.FILES:
+                post_data.image = request.FILES.get('image')
             post_data.save()
             return redirect('post_detail', post_data.id)
         
