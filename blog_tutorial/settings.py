@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
+    'allauth.socialaccount'
 ]
 
 MIDDLEWARE = [
@@ -125,7 +125,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-# STATIC_URL = 'static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
@@ -136,12 +135,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-# ]
-
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT = '/'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
