@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  
+  <title>ブログチュートリアル</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">ブログ</a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">ホーム</a>
+        </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'post_new' %}">投稿</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">ログアウト</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="">サインアップ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_login' %}">ログイン</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container w-50">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </main>
+
+  <footer class="py-2 bgdark"> 
+    <a class="m-0 text-center text-white">Copyright</a>
+  </footer>
+
+  {% block extra_js %}
+  {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h2 class="my-4">{{ post_detail.title }}</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="formpost">
+    {% render_field form.title class="form-control" %}
+  </div>
+</form>
+<div class="d-flex mb-5" >
+  <a href="" class="btn btn-warning mr-2">編集する</a>
+</div>
+{% endif %}
+
+{% endblock %}
