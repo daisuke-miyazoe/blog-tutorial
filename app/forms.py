@@ -7,12 +7,17 @@ from .models import Post
 
 
 class PostForm(forms.ModelForm):
+    post_data = Post.objects.all()
+    category_choice = {}
+    for pd in post_data:
+        category_choice[pd.category] = pd.category
     
     class Meta:
         model = Post
-        fields = ("title", "content", "image")
+        fields = ("title", "category", "content", "image")
         labels = {
             "title": "タイトル",
+            "category": "カテゴリ",
             "content": "内容",
             "image": "画像",
         }
@@ -28,3 +33,4 @@ class PostForm(forms.ModelForm):
         a = self.fields
         for i in self.fields.values():
             i.widget.attrs["class"] = "form-control mb-3 "
+            
