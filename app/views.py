@@ -108,7 +108,7 @@ class CategoryView(View):
 class SearchView(View):
     def get(self, request, *args, **kwargs):
         post_data = Post.objects.order_by('-id')
-        keyword = request.POST.get('keyword')
+        keyword = request.GET.get('keyword')
 
         if keyword:
             exclusion_list = set([' ', '　'])
